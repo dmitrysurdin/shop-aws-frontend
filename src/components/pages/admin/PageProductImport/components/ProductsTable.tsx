@@ -35,13 +35,12 @@ export default function ProductsTable() {
           {data.map((product) => (
             <TableRow key={product.id}>
               <TableCell component="th" scope="row">
-                {product.title}
+                {product.productName}
               </TableCell>
-              <TableCell align="right">{product.description}</TableCell>
               <TableCell align="right">
                 {formatAsPrice(product.price)}
               </TableCell>
-              <TableCell align="right">{product.count}</TableCell>
+              <TableCell align="right">{product.price}</TableCell>
               <TableCell align="right">
                 <Button
                   size="small"
