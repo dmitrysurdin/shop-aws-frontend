@@ -4,16 +4,17 @@ import { AvailableProduct } from "~/models/Product";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import React from "react";
 
+interface ProductI {
+  id: string;
+  productName: string;
+  price: number;
+}
+
 export function useAvailableProducts() {
-  return useQuery<AvailableProduct[], AxiosError>(
-    "available-products",
-    async () => {
-      const res = await axios.get<AvailableProduct[]>(
-        `${API_PATHS.bff}/product/available`
-      );
-      return res.data;
-    }
-  );
+  return useQuery<ProductI[], AxiosError>("products", async () => {
+    const res = await axios.get<ProductI[]>(`${API_PATHS.bff}/products`);
+    return res.data;
+  });
 }
 
 export function useInvalidateAvailableProducts() {

@@ -1,11 +1,9 @@
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { formatAsPrice } from "~/utils/utils";
-import AddProductToCart from "~/components/AddProductToCart/AddProductToCart";
 import { useAvailableProducts } from "~/queries/products";
 
 export default function Products() {
@@ -18,8 +16,8 @@ export default function Products() {
   return (
     <Grid container spacing={4}>
       {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
-      {data.map(({ count, ...product }, index) => (
-        <Grid item key={product.id} xs={12} sm={6} md={4}>
+      {data.map(({ productName, price, id }, index) => (
+        <Grid item key={id} xs={12} sm={6} md={4}>
           <Card
             sx={{ height: "100%", display: "flex", flexDirection: "column" }}
           >
@@ -30,13 +28,13 @@ export default function Products() {
             />
             <CardContent sx={{ flexGrow: 1 }}>
               <Typography gutterBottom variant="h5" component="h2">
-                {product.title}
+                {productName}
               </Typography>
-              <Typography>{formatAsPrice(product.price)}</Typography>
+              <Typography>{formatAsPrice(price)}</Typography>
             </CardContent>
-            <CardActions>
-              <AddProductToCart product={product} />
-            </CardActions>
+            {/*<CardActions>*/}
+            {/*  <AddProductToCart product={product} />*/}
+            {/*</CardActions>*/}
           </Card>
         </Grid>
       ))}
